@@ -2,8 +2,14 @@ server {
     client_max_body_size 20M;
     listen 80 default_server;
 
+    listen 443 ssl;
+
     root /data/public;
     index index.php index.html index.htm;
+
+    server_name dev;
+    ssl_certificate /etc/nginx/ssl/docker.crt;
+    ssl_certificate_key /etc/nginx/ssl/docker.key;
 
     location / {
     	try_files $uri $uri/ /index.html /index.php?$query_string;
